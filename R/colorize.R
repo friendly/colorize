@@ -39,6 +39,10 @@
 #' @export
 #'
 #' @examples
+#'  red <- colorize('red')
+#'  blue <- colorize('blue')
+#'  green <- colorize("green")
+#'  glue::glue("There are {red} points, {blue} points and {green} points")
 #'
 colorize <- function(text, color) {
   if (missing(color)) color <- text
@@ -54,6 +58,8 @@ colorize <- function(text, color) {
 #    #| fig-cap: !expr glue::glue("Some points are {red}, some are  {blue}, some are {green}")
 
 # perhaps better to color the background
+#' @rdname colorize
+#' @export
 colorize_bg <- function(text, bgcolor) {
   if (missing(bgcolor)) bgcolor <- text
   if (knitr::is_latex_output()) {

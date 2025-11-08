@@ -16,10 +16,12 @@
 #' @param maincolor main text color in document
 #' @param bgcolor   background color in document (default: "white")
 #'
-#' @returns
+#' @returns A character string with color-encoded text
 #' @export
 #'
 #' @examples
+#' # placeholder for better examples
+#' colorbox("Gentoo", "green")
 colorbox <- function(text,
                      color = text,
                      maincolor = "#212529",
