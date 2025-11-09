@@ -57,3 +57,6 @@ In a chunk, you can also define variables with the names of colors, for ease of 
  }
 
 }
+\author{
+Michael Friendly
+}

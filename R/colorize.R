@@ -36,6 +36,7 @@
 #' @param text  Text to display, a character string
 #' @param color Color to use, a valid color designation; if missing, use `text` as the color
 #'
+#' @author Michael Friendly
 #' @return A character string with color-encoded text
 #' @export
 #'

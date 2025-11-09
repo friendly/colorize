@@ -35,12 +35,14 @@ used in @fig-penguin-species. My versions are shown in @fig-peng-colors with the
 
 This is the result, rendered to HTML
 
-\figure{man/figures/colorbox-penguins.jpg}{Penguin colors}
+\figure{man/figures/colorbox-penguins.jpg}
 
 \strong{LaTeX}
 
 For LaTeX output to be rendered to PDF, this assumes the standard package \code{xcolor}. In addition, \code{colorbox()} requires the additonal
-definitions (defining \code{gray}) to be made available in your document (e.g., in a \code{preamble.tex} file or in the \code{yml} header)
+definitions (defining \code{gray}) to be made available in your document (e.g., in a \code{preamble.tex} file or in the \code{yml} header).
+In this, you should change \code{212529} to the hex value for the main font used in your document. In R, this is closest to the
+named color \code{gray13}. For "black", use \code{000000}.
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{  \\makeatletter
      \newcommand{\globalcolor}[1]\{\%
@@ -54,4 +56,7 @@ definitions (defining \code{gray}) to be made available in your document (e.g., 
 \examples{
 # placeholder for better examples
 colorbox("Gentoo", "green")
+}
+\author{
+Achim Zeileis
 }

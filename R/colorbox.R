@@ -1,3 +1,5 @@
+#  colorbox
+#
 # Requires:
 #
 #           \makeatletter
@@ -8,6 +10,8 @@
 #           \definecolor{textgray}{HTML}{212529}
 #           \globalcolor{textgray}
 #
+# TODO:
+#  Describe the setting for `textcolor`
 
 #' Create a colorbox in a Markdown / Quarto Document
 #'
@@ -29,12 +33,14 @@
 #'
 #' This is the result, rendered to HTML
 #'
-#' ![](man/figures/colorbox-penguins.jpg "Penguin colors")
+#' ![Penguin colors](man/figures/colorbox-penguins.jpg)
 #'
 #' **LaTeX**
 #'
 #' For LaTeX output to be rendered to PDF, this assumes the standard package `xcolor`. In addition, `colorbox()` requires the additonal
-#' definitions (defining `gray`) to be made available in your document (e.g., in a `preamble.tex` file or in the `yml` header)
+#' definitions (defining `gray`) to be made available in your document (e.g., in a `preamble.tex` file or in the `yml` header).
+#' In this, you should change `212529` to the hex value for the main font used in your document. In R, this is closest to the
+#' named color `gray13`. For "black", use `000000`.
 #'
 #' ```
 #'   \makeatletter
@@ -53,6 +59,7 @@
 #' @param bgcolor   background color in document (default: "white")
 #'
 #' @returns A character string with color-encoded text
+#' @author Achim Zeileis
 #' @export
 #'
 #' @examples
