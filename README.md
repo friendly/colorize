@@ -1,15 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# colorize
-
-**Version 0.0.1**
-
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
+
+# colorize
+
+**Version 0.0.1**
 
 The `colorize` package provides some simple functions for printing text
 in color in markdown or Quarto documents, to be rendered as HTML or
