@@ -18,14 +18,32 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of colorize is to ...
+```{r setup}
+#| echo: false
+library(colorize)
+```
+
+The `colorize` package provides some simple functions for printing text in color in markdown or Quarto documents,
+to be rendered as HTML or LaTeX.
+
+This is useful when writing about the use of colors in graphs or tables, where you want to print
+their names in their actual color to give a direct impression of the color, like "red" shown in `r colorize("red")`, or
+"blue" shown in `r colorize("blue")`. This is similar to the use of **direct labels** in graphs, which are perceptually bound 
+to what is portrayed, rather than an indirect legend, which takes more cognitive energy.
+
+The following functions are provided:
+
+* `colorize(text, color)`: Print the `text` in a given `color`
+* `colorize_bg(text, color)`: Print the `text` with a background in `color`
+* `colorbox(text, color, ...)`: Print `text` with bacground in color, but where the text is given a contrasting color designed to be most legible.
+
 
 ## Installation
 
 You can install the development version of colorize like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+remotes::install.github("friendly/colorize")
 ```
 
 ## Example

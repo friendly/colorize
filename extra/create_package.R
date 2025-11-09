@@ -16,3 +16,7 @@ use_readme_rmd()
 
 # create GitHub repo
 use_github()
+
+use_news_md()
+
+use_vignette("colorbox", "Illustrating colorbox")

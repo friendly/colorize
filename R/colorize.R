@@ -13,10 +13,11 @@
 #'    `\definecolor{darkgreen}{RGB}{1,50,32}` in a document to be rendered to PDF.
 #'
 #' For inline text, in running text, you can use:
-#' \preformatted{
+#'
+#' ```
 #'  `r colorize("Gentoo", "orange")` and  `r colorize("Adelie", "purple")` are Penguins.
 #'  The `r colorize("red")` points and the `r colorize("blue")` points are nice
-#'  }
+#' ```
 #'
 #'  In a chunk, you can also define variables with the names of colors, for ease of use:
 #'
@@ -39,10 +40,12 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #'  red <- colorize('red')
 #'  blue <- colorize('blue')
 #'  green <- colorize("green")
 #'  glue::glue("There are {red} points, {blue} points and {green} points")
+#'  }
 #'
 colorize <- function(text, color) {
   if (missing(color)) color <- text

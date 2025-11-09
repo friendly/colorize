@@ -30,10 +30,10 @@ e.g., \code{darkgreen} is not defined but you can use:
 \verb{\\definecolor\{darkgreen\}\{RGB\}\{1,50,32\}} in a document to be rendered to PDF.
 
 For inline text, in running text, you can use:
-\preformatted{
- <span style='color: orange;'>Gentoo</span> and  <span style='color: purple;'>Adelie</span> are Penguins.
- The <span style='color: red;'>red</span> points and the <span style='color: blue;'>blue</span> points are nice
- }
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ `r colorize("Gentoo", "orange")` and  `r colorize("Adelie", "purple")` are Penguins.
+ The `r colorize("red")` points and the `r colorize("blue")` points are nice
+}\if{html}{\out{</div>}}
 
 In a chunk, you can also define variables with the names of colors, for ease of use:
 
@@ -49,9 +49,11 @@ In a chunk, you can also define variables with the names of colors, for ease of 
  }
 }
 \examples{
+\donttest{
  red <- colorize('red')
  blue <- colorize('blue')
  green <- colorize("green")
  glue::glue("There are {red} points, {blue} points and {green} points")
+ }
 
 }
