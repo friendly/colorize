@@ -11,6 +11,42 @@
 
 #' Create a colorbox in a Markdown / Quarto Document
 #'
+#' The `colorbox()` function renders text in a colored colored background for Markdown / Quarto documents. For documents to be
+#' rendered in HTML, ...
+#'
+#' @details
+#'
+#' This illustrates the use of `colorbox()` in a Quarto document:
+#'
+#' ````
+#' I'll be using the penguins data quite a lot, so it is useful to set up custom colors like those
+#' used in @fig-penguin-species. My versions are shown in @fig-peng-colors with their color codes. These are shades of:
+#'
+#' * `r colorbox("Adélie", "orange")`: `r colorbox("orange", "orange")`,
+#' * `r colorbox("Chinstrap", "purple")`: `r colorbox("purple", "purple")`, and
+#' * `r colorbox("Gentoo", "green")`: `r colorbox("green", "green")`.
+#' ````
+#'
+#' This is the result, rendered to HTML
+#'
+#' ![](man/figures/colorbox-penguins.jpg "Penguin colors")
+#'
+#' **LaTeX**
+#'
+#' For LaTeX output to be rendered to PDF, this assumes the standard package `xcolor`. In addition, `colorbox()` requires the additonal
+#' definitions (defining `gray`) to be made available in your document (e.g., in a `preamble.tex` file or in the `yml` header)
+#'
+#' ```
+#'   \makeatletter
+#'      \newcommand{\globalcolor}[1]{%
+#'        \color{#1}\global\let\default@color\current@color
+#'      }
+#'      \makeatother
+#'        \definecolor{textgray}{HTML}{212529}
+#'        \globalcolor{textgray}
+#' ```
+#'
+#'
 #' @param text    Text to display, a character string
 #' @param desired background color (e.g., `"red"` or `"#DF536B"`)
 #' @param maincolor main text color in document

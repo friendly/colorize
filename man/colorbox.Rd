@@ -19,7 +19,37 @@ colorbox(text, color = text, maincolor = "#212529", bgcolor = "white")
 A character string with color-encoded text
 }
 \description{
-Create a colorbox in a Markdown / Quarto Document
+The \code{colorbox()} function renders text in a colored colored background for Markdown / Quarto documents. For documents to be
+rendered in HTML, ...
+}
+\details{
+This illustrates the use of \code{colorbox()} in a Quarto document:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{I'll be using the penguins data quite a lot, so it is useful to set up custom colors like those
+used in @fig-penguin-species. My versions are shown in @fig-peng-colors with their color codes. These are shades of:
+
+* `r colorbox("Adélie", "orange")`: `r colorbox("orange", "orange")`,
+* `r colorbox("Chinstrap", "purple")`: `r colorbox("purple", "purple")`, and
+* `r colorbox("Gentoo", "green")`: `r colorbox("green", "green")`.
+}\if{html}{\out{</div>}}
+
+This is the result, rendered to HTML
+
+\figure{man/figures/colorbox-penguins.jpg}{Penguin colors}
+
+\strong{LaTeX}
+
+For LaTeX output to be rendered to PDF, this assumes the standard package \code{xcolor}. In addition, \code{colorbox()} requires the additonal
+definitions (defining \code{gray}) to be made available in your document (e.g., in a \code{preamble.tex} file or in the \code{yml} header)
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{  \\makeatletter
+     \newcommand{\globalcolor}[1]\{\%
+       \\color\{#1\}\\global\\let\\default@color\\current@color
+     \}
+     \\makeatother
+       \\definecolor\{textgray\}\{HTML\}\{212529\}
+       \\globalcolor\{textgray\}
+}\if{html}{\out{</div>}}
 }
 \examples{
 # placeholder for better examples
