@@ -15,9 +15,10 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Last Commit](https://img.shields.io/github/last-commit/friendly/colorize)](https://github.com/friendly/colorize/)
 <!-- badges: end -->
 
-# colorize
+# colorize <img src="man/figures/logo.jpg" height="120" style="float:right; height:120px;"/> 
 
 **Version 0.0.1**
 
