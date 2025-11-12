@@ -9,10 +9,11 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 Commit](https://img.shields.io/github/last-commit/friendly/colorize)](https://github.com/friendly/colorize/)
 <!-- badges: end -->
 
-# colorize <img src="man/figures/logo.jpg" height="120" style="float:right; height:120px;"/>
+# colorize
 
 **Version 0.1.0**
 
+<img src="man/figures/logo.jpg" height="120" style="float:right; height:120px;"/>
 The `colorize` package provides some simple functions for printing text
 in color in markdown or Quarto documents, to be rendered as HTML or
 LaTeX.
