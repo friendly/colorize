@@ -7,7 +7,7 @@
 \usage{
 colorize(text, color)
 
-colorize_bg(text, bgcolor)
+colorize_bg(text, color)
 }
 \arguments{
 \item{text}{Text to display, a character string}

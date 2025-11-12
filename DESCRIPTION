@@ -13,11 +13,12 @@ Authors@R:
     )
 Description: Print text in color in HTML or PDF.
 Imports: colorspace, knitr
-Suggests: quarto
+Suggests: quarto, glue
 License: MIT + file LICENSE
 Encoding: UTF-8
 VignetteBuilder: quarto
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Language: en-US
 URL: https://github.com/friendly/colorize
 BugReports: https://github.com/friendly/colorize/issues

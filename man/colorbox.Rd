@@ -59,7 +59,7 @@ Additionally, the package canonicalizes all R color specifications to hex color 
 (of the form \verb{#rrggbb}) which can subsequently be employed easily in both LaTeX and HTML
 output. The default output format inside Quarto documents processed via \code{knitr} is
 determined using the functions \code{\link[knitr]{is_latex_output}} and
-\code{\link[knitr]{is_html_output}}, respecitvely.
+\code{\link[knitr]{is_html_output}}, respectively.
 
 This illustrates the use of \code{colorbox()} in a Quarto document:
 

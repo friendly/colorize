@@ -14,7 +14,7 @@
 #' (of the form `#rrggbb`) which can subsequently be employed easily in both LaTeX and HTML
 #' output. The default output format inside Quarto documents processed via `knitr` is
 #' determined using the functions \code{\link[knitr]{is_latex_output}} and
-#' \code{\link[knitr]{is_html_output}}, respecitvely.
+#' \code{\link[knitr]{is_html_output}}, respectively.
 #'
 #' This illustrates the use of `colorbox()` in a Quarto document:
 #'
@@ -63,17 +63,17 @@
 #' ## and the output format be decided automatically (the latter does not work
 #' ## correctly outside of a quarto/knitr document and hence just returns the text)
 #' colorbox("red")
-#' 
+#'
 #' ## emulate behavior in a quarto/knitr document with HTML or LaTeX output
 #' colorbox("red", format = "latex")
 #' colorbox("red", format = "html")
-#' 
+#'
 #' ## instead of fully saturated red in sRGB, employ other flavors of red:
 #' ## - color 2 in R's default palette
 #' ## - color #D55E00 from the Okabe-Ito palette
 #' colorbox("red", color = 2, format = "html")
 #' colorbox("red", color = "#D55E00", format = "html")
-#' 
+#'
 #' ## by default, either black or white is used for the text color
 #' ## (which ever has the better contrast) but alternatively a different
 #' ## main font color (say gray10) and a different background color (say cornsilk)
