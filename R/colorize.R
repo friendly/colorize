@@ -3,12 +3,13 @@
 #' The `colorize()` function renders text in color for Markdown / Quarto documents. For documents to be rendered in HTML,
 #' it uses a CSS `<span>`; for documents to be converted to LaTeX and rendered as PDF, it
 #' uses `\textcolor{}{}` from the [`xcolor`](https://ctan.org/pkg/xcolor) package.
+#'
 #' A companion function, `colorize_bg()` does the same, but uses the specified color for the background.
 #'
 #' @details
 #'
 #' The names of colors
-#' Note that a color name not defined in the `xcolor` package will trigger a LaTeX error.
+#' Note that a color name not defined in the [`xcolor`](https://ctan.org/pkg/xcolor) package will trigger a LaTeX error.
 #' e.g., `darkgreen` is not defined but you can use:
 #'    `\definecolor{darkgreen}{RGB}{1,50,32}` in a document to be rendered to PDF.
 #'
@@ -27,17 +28,21 @@
 #'  blue <- colorize('blue')
 #'  green <- colorize("green")
 #'  yellow <- colorize("yellow")
-#'  lightgreen <- colorize("lightgreen")
-#'  darkgreen <- colorize("darkgreen")
-#'  brown <- colorize("brown", "brown4")
 #'  }
+#'
+#'  Then, these can be used directly in strings, interpolated by `glue::glue()`
 #'
 #'
 #' @param text  Text to display, a character string
 #' @param color Color to use, a valid color designation; if missing, use `text` as the color
+#' @param format character specification of the output format. Currently supported formats are:
+#' \code{"latex"} (default if \code{\link[knitr]{is_latex_output}}),
+#' \code{"html"} (default if \code{\link[knitr]{is_html_output}},
+#' and \code{"text"} (otherwise) are supported where the latter just contains
+#' the input \code{text} without any color formatting.
 #'
 #' @author Michael Friendly
-#' @return A character string with color-encoded text
+#' @return A character string with the input text along with markup for color encoding.
 #' @export
 #'
 #' @examples
@@ -48,8 +53,15 @@
 #'  glue::glue("There are {red} points, {blue} points and {green} points")
 #'  }
 #'
-colorize <- function(text, color) {
+colorize <- function(text,
+                     color,
+                     format) {
   if (missing(color)) color <- text
+
+  # determine output format
+  if (is.null(format)) format <- if (is_latex_output()) "latex" else if (is_html_output()) "html" else "text"
+  format <- match.arg(tolower(format), c("latex", "html", "text"))
+
   if (knitr::is_latex_output()) {
     sprintf("\\textcolor{%s}{%s}", color, text)
   } else if (knitr::is_html_output()) {
@@ -57,16 +69,19 @@ colorize <- function(text, color) {
   } else text      # Fallback for other formats
 }
 
-# Define some color names for use in figure captions.
-# use as:
-#    #| fig-cap: !expr glue::glue("Some points are {red}, some are  {blue}, some are {green}")
 
-# perhaps better to color the background
 #' @rdname colorize
 #' @export
-colorize_bg <- function(text, color) {
-  if (missing(bgcolor)) bgcolor <- text
-  if (knitr::is_latex_output()) {
+colorize_bg <- function(text,
+                        color,
+                        format) {
+  if (missing(color)) color <- text
+
+  # determine output format
+  if (is.null(format)) format <- if (is_latex_output()) "latex" else if (is_html_output()) "html" else "text"
+  format <- match.arg(tolower(format), c("latex", "html", "text"))
+
+    if (knitr::is_latex_output()) {
     sprintf("\\colorbox{%s}{%s}", color, text)
   } else if (knitr::is_html_output()) {
     sprintf("<span style='background-color: %s;'>%s</span>", bgcolor, text)

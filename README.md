@@ -11,7 +11,7 @@ Commit](https://img.shields.io/github/last-commit/friendly/colorize)](https://gi
 
 # colorize
 
-**Version 0.1.0**
+**Version 0.2.0**
 
 <img src="man/figures/logo.jpg" height="120" style="float:right; height:120px;"/>
 The `colorize` package provides some simple functions for printing text

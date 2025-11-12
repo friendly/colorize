@@ -5,27 +5,34 @@
 \alias{colorize_bg}
 \title{Render text in color for Markdown / Quarto documents}
 \usage{
-colorize(text, color)
+colorize(text, color, format)
 
-colorize_bg(text, color)
+colorize_bg(text, color, format)
 }
 \arguments{
 \item{text}{Text to display, a character string}
 
 \item{color}{Color to use, a valid color designation; if missing, use \code{text} as the color}
+
+\item{format}{character specification of the output format. Currently supported formats are:
+\code{"latex"} (default if \code{\link[knitr]{is_latex_output}}),
+\code{"html"} (default if \code{\link[knitr]{is_html_output}},
+and \code{"text"} (otherwise) are supported where the latter just contains
+the input \code{text} without any color formatting.}
 }
 \value{
-A character string with color-encoded text
+A character string with the input text along with markup for color encoding.
 }
 \description{
 The \code{colorize()} function renders text in color for Markdown / Quarto documents. For documents to be rendered in HTML,
 it uses a CSS \verb{<span>}; for documents to be converted to LaTeX and rendered as PDF, it
 uses \verb{\\textcolor\{\}\{\}} from the \href{https://ctan.org/pkg/xcolor}{\code{xcolor}} package.
-A companion function, \code{colorize_bg()} does the same, but uses the specified color for the background.
 }
 \details{
+A companion function, \code{colorize_bg()} does the same, but uses the specified color for the background.
+
 The names of colors
-Note that a color name not defined in the \code{xcolor} package will trigger a LaTeX error.
+Note that a color name not defined in the \href{https://ctan.org/pkg/xcolor}{\code{xcolor}} package will trigger a LaTeX error.
 e.g., \code{darkgreen} is not defined but you can use:
 \verb{\\definecolor\{darkgreen\}\{RGB\}\{1,50,32\}} in a document to be rendered to PDF.
 
@@ -43,10 +50,9 @@ In a chunk, you can also define variables with the names of colors, for ease of 
  blue <- colorize('blue')
  green <- colorize("green")
  yellow <- colorize("yellow")
- lightgreen <- colorize("lightgreen")
- darkgreen <- colorize("darkgreen")
- brown <- colorize("brown", "brown4")
  }
+
+Then, these can be used directly in strings, interpolated by \code{glue::glue()}
 }
 \examples{
 \donttest{
