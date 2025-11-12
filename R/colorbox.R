@@ -1,95 +1,112 @@
-#  colorbox
-#
-# Requires:
-#
-#           \makeatletter
-#           \newcommand{\globalcolor}[1]{%
-#             \color{#1}\global\let\default@color\current@color
-#           }
-#           \makeatother
-#           \definecolor{textgray}{HTML}{212529}
-#           \globalcolor{textgray}
-#
-# TODO:
-#  Describe the setting for `textcolor`
-
-#' Create a colorbox in a Markdown / Quarto Document
+#' Create a Color Box in a Markdown/Quarto Document
 #'
-#' The `colorbox()` function renders text in a colored colored background for Markdown / Quarto documents. For documents to be
+#' The `colorbox()` function renders text in a colored background for Markdown / Quarto documents. For documents to be
 #' rendered in HTML, ...
 #'
-#' @details
+#' @details The function `colorbox()` is a small convenience function that sets up a color box
+#' in LaTeX (via `\colorbox{...}{...}`) or HTML (via `<span style=...>...</span>`) for a given
+#' text. The main convenience is that the function assesses first whether the text in the color
+#' box has a better contrast when written in the main font color (default: black) or the background
+#' color (default: white). This is decided based on the `contrast_ratio()` function from the
+#' `colorspace` package using the APCA algorithm.
+#'
+#' Additionally, the package canonicalizes all R color specifications to hex color codes
+#' (of the form `#rrggbb`) which can subsequently be employed easily in both LaTeX and HTML
+#' output. The default output format inside Quarto documents processed via `knitr` is
+#' determined using the functions \code{\link[knitr]{is_latex_output}} and
+#' \code{\link[knitr]{is_html_output}}, respecitvely.
 #'
 #' This illustrates the use of `colorbox()` in a Quarto document:
 #'
 #' ````
-#' I'll be using the penguins data quite a lot, so it is useful to set up custom colors like those
-#' used in @fig-penguin-species. My versions are shown in @fig-peng-colors with their color codes. These are shades of:
+#' I'll be using the penguins data quite a lot, so it is useful to set up custom colors like
+#' those used in @fig-penguin-species. My versions are shown in @fig-peng-colors with their
+#' color codes. These are shades of:
 #'
 #' * `r colorbox("Adélie", "orange")`: `r colorbox("orange", "orange")`,
 #' * `r colorbox("Chinstrap", "purple")`: `r colorbox("purple", "purple")`, and
 #' * `r colorbox("Gentoo", "green")`: `r colorbox("green", "green")`.
 #' ````
 #'
-#' This is the result, rendered to HTML
+#' This is the result, rendered to HTML:
 #'
 #' ![Penguin colors](man/figures/colorbox-penguins.jpg)
 #'
-#' **LaTeX**
 #'
-#' For LaTeX output to be rendered to PDF, this assumes the standard package `xcolor`. In addition, `colorbox()` requires the additonal
-#' definitions (defining `gray`) to be made available in your document (e.g., in a `preamble.tex` file or in the `yml` header).
-#' In this, you should change `212529` to the hex value for the main font used in your document. In R, this is closest to the
-#' named color `gray13`. For "black", use `000000`.
+#' @param text character string with the text to display.
+#' @param color R color specification. The default is to use \code{text},
+#' expecting it to be a named color. Beyond this \code{color} can be any
+#' of the three kinds of R colors,
+#' i.e., either a color name (an element of \code{\link[grDevices]{colors}}),
+#' a hexadecimal (hex) string of the form \code{"#rrggbb"} or \code{"#rrggbbaa"}
+#' (see \code{\link[grDevices]{rgb}}), or an integer \code{i} meaning \code{palette()[i]}.
+#' See also \code{\link[colorspace]{adjust_transparency}} which is used internally
+#' to convert all colors to hex strings of the form \code{"#rrggbb"}.
+#' @param maincolor R color specification (see above) for the main text color in the
+#' Quarto document (default: black).
+#' @param bgcolor R color specification (see above) for the background color in the
+#' Quarto document (default: white).
+#' @param format character specification of the output format. Currently,
+#' \code{"latex"} (default if \code{\link[knitr]{is_latex_output}}),
+#' \code{"html"} (default if \code{\link[knitr]{is_html_output}},
+#' and \code{"text"} (otherwise) are supported where the latter just contains
+#' the input \code{text} without any color box formatting.
+#' @param padding integer. Amount of padding (in pixels) for the color box if
+#' \code{format = "html"}.
 #'
-#' ```
-#'   \makeatletter
-#'      \newcommand{\globalcolor}[1]{%
-#'        \color{#1}\global\let\default@color\current@color
-#'      }
-#'      \makeatother
-#'        \definecolor{textgray}{HTML}{212529}
-#'        \globalcolor{textgray}
-#' ```
+#' @returns A character string with the input text along with markup for a background color box.
 #'
-#'
-#' @param text    Text to display, a character string
-#' @param desired background color (e.g., `"red"` or `"#DF536B"`)
-#' @param maincolor main text color in document
-#' @param bgcolor   background color in document (default: "white")
-#'
-#' @returns A character string with color-encoded text
 #' @author Achim Zeileis
-#' @export
 #'
 #' @examples
-#' # placeholder for better examples
-#' colorbox("Gentoo", "green")
+#' ## basic usage: just supply a color name and let both the background color
+#' ## and the output format be decided automatically (the latter does not work
+#' ## correctly outside of a quarto/knitr document and hence just returns the text)
+#' colorbox("red")
+#' 
+#' ## emulate behavior in a quarto/knitr document with HTML or LaTeX output
+#' colorbox("red", format = "latex")
+#' colorbox("red", format = "html")
+#' 
+#' ## instead of fully saturated red in sRGB, employ other flavors of red:
+#' ## - color 2 in R's default palette
+#' ## - color #D55E00 from the Okabe-Ito palette
+#' colorbox("red", color = 2, format = "html")
+#' colorbox("red", color = "#D55E00", format = "html")
+#' 
+#' ## by default, either black or white is used for the text color
+#' ## (which ever has the better contrast) but alternatively a different
+#' ## main font color (say gray10) and a different background color (say cornsilk)
+#' ## can be used for the text
+#' colorbox("red", color = 2, maincolor = "gray10", bgcolor = "cornsilk", format = "html")
+#' colorbox("yellow", color = 7, maincolor = "gray10", bgcolor = "cornsilk", format = "html")
+#'
+#' @keywords color
+#'
+#' @importFrom colorspace adjust_transparency contrast_ratio
+#' @importFrom knitr is_html_output is_latex_output
+#' @export
 colorbox <- function(text,
                      color = text,
-                     maincolor = "#212529",
-                     bgcolor = "white") {
-  ## Arguments:
-  ## - text: character string
-  ## - color: desired background color (e.g., red or #DF536B)
-  ## - maincolor: main text color in document
-  ## - bgcolor: background color in document
-
+                     maincolor = "black",
+                     bgcolor = "white",
+                     format = NULL,
+                     padding = 2) {
   ## determine whether `maincolor` or `bgcolor` have a higher contrast
   ## when they are the text color and `color` is the background color
   textcolor <- c(maincolor, bgcolor)
-  textcolor <- textcolor[which.max(abs(colorspace::contrast_ratio(textcolor, color, algorithm = "APCA")[, "normal"]))]
+  textcolor <- textcolor[which.max(abs(contrast_ratio(textcolor, color, algorithm = "APCA")[, "normal"]))]
 
   ## canonicalize to hex codes without hashtag and alpha channel
-  color <- colorspace::adjust_transparency(c(color, textcolor), alpha = FALSE)
+  color <- adjust_transparency(c(color, textcolor), alpha = FALSE)
   color <- gsub("#", "", color, fixed = TRUE)
 
+  if (is.null(format)) format <- if (is_latex_output()) "latex" else if (is_html_output()) "html" else "text"
+  format <- match.arg(tolower(format), c("latex", "html", "text"))
+
   ## set up formatted string
-  if (knitr::is_latex_output()) {
-    sprintf("\\colorbox[HTML]{%s}{\\textcolor[HTML]{%s}{%s}}", color[1L], color[2L], text)
-  } else if (knitr::is_html_output()) {
-    sprintf("<span style='background-color: #%s; color: #%s; padding: 2px'>%s</span>", color[1L], color[2L], text)
-  } else {
-    text
-  }
+  switch(format,
+    "latex" = sprintf("\\colorbox[HTML]{%s}{\\textcolor[HTML]{%s}{%s}}", color[1L], color[2L], text),
+    "html" = sprintf("<span style='background-color: #%s; color: #%s; padding: %spx'>%s</span>", color[1L], color[2L], padding, text),
+    "text" = text)
 }
