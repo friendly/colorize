@@ -1,6 +1,6 @@
 Package: colorize
 Title: Render Text in Color for Markdown/Quarto Documents
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: 
     c(person("Michael", "Friendly",  
              email = "friendly@yorku.ca", role = c("aut", "cre"),
