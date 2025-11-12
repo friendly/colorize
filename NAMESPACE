@@ -3,3 +3,7 @@
 export(colorbox)
 export(colorize)
 export(colorize_bg)
+importFrom(colorspace,adjust_transparency)
+importFrom(colorspace,contrast_ratio)
+importFrom(knitr,is_html_output)
+importFrom(knitr,is_latex_output)

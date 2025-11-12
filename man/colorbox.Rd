@@ -2,61 +2,105 @@
 % Please edit documentation in R/colorbox.R
 \name{colorbox}
 \alias{colorbox}
-\title{Create a colorbox in a Markdown / Quarto Document}
+\title{Create a Color Box in a Markdown/Quarto Document}
 \usage{
-colorbox(text, color = text, maincolor = "#212529", bgcolor = "white")
+colorbox(
+  text,
+  color = text,
+  maincolor = "black",
+  bgcolor = "white",
+  format = NULL,
+  padding = 2
+)
 }
 \arguments{
-\item{text}{Text to display, a character string}
+\item{text}{character string with the text to display.}
 
-\item{maincolor}{main text color in document}
+\item{color}{R color specification. The default is to use \code{text},
+expecting it to be a named color. Beyond this \code{color} can be any
+of the three kinds of R colors,
+i.e., either a color name (an element of \code{\link[grDevices]{colors}}),
+a hexadecimal (hex) string of the form \code{"#rrggbb"} or \code{"#rrggbbaa"}
+(see \code{\link[grDevices]{rgb}}), or an integer \code{i} meaning \code{palette()[i]}.
+See also \code{\link[colorspace]{adjust_transparency}} which is used internally
+to convert all colors to hex strings of the form \code{"#rrggbb"}.}
 
-\item{bgcolor}{background color in document (default: "white")}
+\item{maincolor}{R color specification (see above) for the main text color in the
+Quarto document (default: black).}
 
-\item{desired}{background color (e.g., \code{"red"} or \code{"#DF536B"})}
+\item{bgcolor}{R color specification (see above) for the background color in the
+Quarto document (default: white).}
+
+\item{format}{character specification of the output format. Currently,
+\code{"latex"} (default if \code{\link[knitr]{is_latex_output}}),
+\code{"html"} (default if \code{\link[knitr]{is_html_output}},
+and \code{"text"} (otherwise) are supported where the latter just contains
+the input \code{text} without any color box formatting.}
+
+\item{padding}{integer. Amount of padding (in pixels) for the color box if
+\code{format = "html"}.}
 }
 \value{
-A character string with color-encoded text
+A character string with the input text along with markup for a background color box.
 }
 \description{
-The \code{colorbox()} function renders text in a colored colored background for Markdown / Quarto documents. For documents to be
+The \code{colorbox()} function renders text in a colored background for Markdown / Quarto documents. For documents to be
 rendered in HTML, ...
 }
 \details{
+The function \code{colorbox()} is a small convenience function that sets up a color box
+in LaTeX (via \verb{\\colorbox\{...\}\{...\}}) or HTML (via \verb{<span style=...>...</span>}) for a given
+text. The main convenience is that the function assesses first whether the text in the color
+box has a better contrast when written in the main font color (default: black) or the background
+color (default: white). This is decided based on the \code{contrast_ratio()} function from the
+\code{colorspace} package using the APCA algorithm.
+
+Additionally, the package canonicalizes all R color specifications to hex color codes
+(of the form \verb{#rrggbb}) which can subsequently be employed easily in both LaTeX and HTML
+output. The default output format inside Quarto documents processed via \code{knitr} is
+determined using the functions \code{\link[knitr]{is_latex_output}} and
+\code{\link[knitr]{is_html_output}}, respecitvely.
+
 This illustrates the use of \code{colorbox()} in a Quarto document:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{I'll be using the penguins data quite a lot, so it is useful to set up custom colors like those
-used in @fig-penguin-species. My versions are shown in @fig-peng-colors with their color codes. These are shades of:
+\if{html}{\out{<div class="sourceCode">}}\preformatted{I'll be using the penguins data quite a lot, so it is useful to set up custom colors like
+those used in @fig-penguin-species. My versions are shown in @fig-peng-colors with their
+color codes. These are shades of:
 
 * `r colorbox("Adélie", "orange")`: `r colorbox("orange", "orange")`,
 * `r colorbox("Chinstrap", "purple")`: `r colorbox("purple", "purple")`, and
 * `r colorbox("Gentoo", "green")`: `r colorbox("green", "green")`.
 }\if{html}{\out{</div>}}
 
-This is the result, rendered to HTML
+This is the result, rendered to HTML:
 
 \figure{man/figures/colorbox-penguins.jpg}
-
-\strong{LaTeX}
-
-For LaTeX output to be rendered to PDF, this assumes the standard package \code{xcolor}. In addition, \code{colorbox()} requires the additonal
-definitions (defining \code{gray}) to be made available in your document (e.g., in a \code{preamble.tex} file or in the \code{yml} header).
-In this, you should change \code{212529} to the hex value for the main font used in your document. In R, this is closest to the
-named color \code{gray13}. For "black", use \code{000000}.
-
-\if{html}{\out{<div class="sourceCode">}}\preformatted{  \\makeatletter
-     \newcommand{\globalcolor}[1]\{\%
-       \\color\{#1\}\\global\\let\\default@color\\current@color
-     \}
-     \\makeatother
-       \\definecolor\{textgray\}\{HTML\}\{212529\}
-       \\globalcolor\{textgray\}
-}\if{html}{\out{</div>}}
 }
 \examples{
-# placeholder for better examples
-colorbox("Gentoo", "green")
+## basic usage: just supply a color name and let both the background color
+## and the output format be decided automatically (the latter does not work
+## correctly outside of a quarto/knitr document and hence just returns the text)
+colorbox("red")
+
+## emulate behavior in a quarto/knitr document with HTML or LaTeX output
+colorbox("red", format = "latex")
+colorbox("red", format = "html")
+
+## instead of fully saturated red in sRGB, employ other flavors of red:
+## - color 2 in R's default palette
+## - color #D55E00 from the Okabe-Ito palette
+colorbox("red", color = 2, format = "html")
+colorbox("red", color = "#D55E00", format = "html")
+
+## by default, either black or white is used for the text color
+## (which ever has the better contrast) but alternatively a different
+## main font color (say gray10) and a different background color (say cornsilk)
+## can be used for the text
+colorbox("red", color = 2, maincolor = "gray10", bgcolor = "cornsilk", format = "html")
+colorbox("yellow", color = 7, maincolor = "gray10", bgcolor = "cornsilk", format = "html")
+
 }
 \author{
 Achim Zeileis
 }
+\keyword{color}
