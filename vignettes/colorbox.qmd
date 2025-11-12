@@ -1,0 +1,52 @@
+---
+title: Quarto Background Color Boxes
+format: html
+vignette: >
+  %\VignetteIndexEntry{Quarto Background Color Boxes}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{grDevices,colorspace}
+  %\VignetteKeywords{Quarto, HTML, PDF, color}
+  %\VignettePackage{colorize}
+---
+
+```{r colorbox}
+#| include: false
+library("colorize")
+oi <- palette.colors(names = TRUE)
+```
+
+### Named colors
+
+_Idea:_ Named colors can just be included via `colorbox()` with their name, e.g., `colorbox("red")` for `r colorbox("red")`.
+
+_Examples:_
+`r colorbox("black")`,
+`r colorbox("gray")`,
+`r colorbox("red")`,
+`r colorbox("orange")`,
+`r colorbox("yellow")`,
+`r colorbox("green")`,
+`r colorbox("blue")`,
+`r colorbox("cyan")`,
+`r colorbox("magenta")`,
+`r colorbox("pink")`,
+`r colorbox("darkgreen")`,
+`r colorbox("purple")`.
+
+
+### Hex colors
+
+_Idea:_ Hex colors can be included via `colorbox()` using two arguments, their verbal description and the precise hex color code,
+e.g., `colorbox("bluishgreen", "#009E73")` for `r colorbox("bluishgreen", "#009E73")`.
+
+_Examples:_ The Okabe-Ito palette as provided by `palette.colors(names = TRUE)` has following elements,
+`r colorbox(names(oi)[1], oi[1])`,
+`r colorbox(names(oi)[2], oi[2])`,
+`r colorbox(names(oi)[3], oi[3])`,
+`r colorbox(names(oi)[4], oi[4])`,
+`r colorbox(names(oi)[5], oi[5])`,
+`r colorbox(names(oi)[6], oi[6])`,
+`r colorbox(names(oi)[7], oi[7])`,
+`r colorbox(names(oi)[8], oi[8])`,
+`r colorbox(names(oi)[9], oi[9])`.
