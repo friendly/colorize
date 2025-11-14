@@ -62,11 +62,16 @@ colorize <- function(text,
   if (is.null(format)) format <- if (is_latex_output()) "latex" else if (is_html_output()) "html" else "text"
   format <- match.arg(tolower(format), c("latex", "html", "text"))
 
-  if (knitr::is_latex_output()) {
-    sprintf("\\textcolor{%s}{%s}", color, text)
-  } else if (knitr::is_html_output()) {
-    sprintf("<span style='color: %s;'>%s</span>", color, text)
-  } else text      # Fallback for other formats
+  switch(format,
+    "latex" = sprintf("\\textcolor{%s}{%s}", color, text),
+    "html" = ssprintf("<span style='color: %s;'>%s</span>", color, text),
+    "text" = text)
+
+  # if (knitr::is_latex_output()) {
+  #   sprintf("\\textcolor{%s}{%s}", color, text)
+  # } else if (knitr::is_html_output()) {
+  #   sprintf("<span style='color: %s;'>%s</span>", color, text)
+  # } else text      # Fallback for other formats
 }
 
 
