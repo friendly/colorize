@@ -1,0 +1,9 @@
+pandoc: 3.6.3
+pkgdown: 2.1.3
+pkgdown_sha: ~
+articles:
+  colorbox: colorbox.html
+last_built: 2025-11-14T19:10Z
+urls:
+  reference: http://friendly.github.io/colorize/reference
+  article: http://friendly.github.io/colorize/articles
