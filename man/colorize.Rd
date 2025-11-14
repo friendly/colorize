@@ -52,7 +52,7 @@ In a chunk, you can also define variables with the names of colors, for ease of 
  yellow <- colorize("yellow")
  }
 
-Then, these can be used directly in strings, interpolated by \code{glue::glue()}
+Then, these can be used directly in strings, interpolated by \code{glue::glue()}. This is particularly useful in figure captions.
 }
 \examples{
 \donttest{

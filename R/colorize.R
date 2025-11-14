@@ -30,7 +30,7 @@
 #'  yellow <- colorize("yellow")
 #'  }
 #'
-#'  Then, these can be used directly in strings, interpolated by `glue::glue()`
+#'  Then, these can be used directly in strings, interpolated by `glue::glue()`. This is particularly useful in figure captions.
 #'
 #'
 #' @param text  Text to display, a character string
