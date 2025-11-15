@@ -46,6 +46,13 @@
 #' @export
 #'
 #' @examples
+#' # show what the generated text looks like when encoded for either HTML or LaTeX
+#' colorize("red", format = "html") |> cat()
+#' colorize("red", format = "latex") |> cat()
+#'
+#' colorize_bg("blue", format = "html") |> cat()
+#' colorize_bg("blue", format = "latex") |> cat()
+#'
 #' \donttest{
 #'  red <- colorize('red')
 #'  blue <- colorize('blue')
@@ -55,7 +62,7 @@
 #'
 colorize <- function(text,
                      color,
-                     format) {
+                     format = NULL) {
   if (missing(color)) color <- text
 
   # determine output format
@@ -64,7 +71,7 @@ colorize <- function(text,
 
   switch(format,
     "latex" = sprintf("\\textcolor{%s}{%s}", color, text),
-    "html" = ssprintf("<span style='color: %s;'>%s</span>", color, text),
+    "html" =  sprintf("<span style='color: %s;'>%s</span>", color, text),
     "text" = text)
 
   # if (knitr::is_latex_output()) {
@@ -79,19 +86,24 @@ colorize <- function(text,
 #' @export
 colorize_bg <- function(text,
                         color,
-                        format) {
+                        format = NULL) {
   if (missing(color)) color <- text
 
   # determine output format
   if (is.null(format)) format <- if (is_latex_output()) "latex" else if (is_html_output()) "html" else "text"
   format <- match.arg(tolower(format), c("latex", "html", "text"))
 
-    if (knitr::is_latex_output()) {
-    sprintf("\\colorbox{%s}{%s}", color, text)
-  } else if (knitr::is_html_output()) {
-    sprintf("<span style='background-color: %s;'>%s</span>", bgcolor, text)
-  } else {
-    text # Fallback for other formats
-  }
+  switch(format,
+    "latex" = sprintf("\\colorbox{%s}{%s}", color, text),
+    "html" =  sprintf("<span style='background-color: %s;'>%s</span>", color, text),
+    "text" = text)
+
+  #  if (knitr::is_latex_output()) {
+  #   sprintf("\\colorbox{%s}{%s}", color, text)
+  # } else if (knitr::is_html_output()) {
+  #   sprintf("<span style='background-color: %s;'>%s</span>", color, text)
+  # } else {
+  #   text # Fallback for other formats
+  # }
 }
 

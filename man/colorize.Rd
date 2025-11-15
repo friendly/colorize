@@ -5,9 +5,9 @@
 \alias{colorize_bg}
 \title{Render text in color for Markdown / Quarto documents}
 \usage{
-colorize(text, color, format)
+colorize(text, color, format = NULL)
 
-colorize_bg(text, color, format)
+colorize_bg(text, color, format = NULL)
 }
 \arguments{
 \item{text}{Text to display, a character string}

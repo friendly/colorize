@@ -55,6 +55,8 @@ This is somewhat similar to what RStudio does when you enter color names or hex 
 
 ## Installation
 
+
+`colorize` is not yet on CRAN.
 You can install the development version of colorize like so:
 
 ``` r

@@ -6,3 +6,5 @@
 ^_pkgdown\.yml$
 ^pkgdown$
 ^docs/
+.nojekyll
+vignettes/.quarto

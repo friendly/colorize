@@ -1,8 +1,8 @@
 ---
-title: Quarto Background Color Boxes
+title: Printing Text in Color in Markdown / Quarto
 format: html
 vignette: >
-  %\VignetteIndexEntry{Quarto Background Color Boxes}
+  %\VignetteIndexEntry{Printing Text in Color in Markdown / Quarto}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
   %\VignetteDepends{grDevices,colorspace}
@@ -16,9 +16,47 @@ library("colorize")
 oi <- palette.colors(names = TRUE)
 ```
 
+The colorize package provides some simple functions for printing text in color in markdown or Quarto documents, to be rendered as HTML or LaTeX. This is useful when writing about the use of colors in graphs or tables, where you want to print their names in their actual color to give a direct impression of the color, like “red” shown in `r colorize("red")`, or “blue” shown in `r colorize("blue")`. 
+
+The following functions are provided:
+
+* `colorize(text, color)`: Print the `text` in a given `color`, as in `r colorize("this text in red", "red")`
+* `colorize_bg(text, color)`: Print the `text` with a background in `color`, as in `r colorize_bg("this text in red", "red")`
+* `colorbox(text, color, ...)`: Print `text` with background in color, but where the text is given a contrasting color designed to be most legible, as in `r colorbox("this text in red", "red")`
+
+### Normal usage
+
+In text describing analysis of the `penguins` data, to match the colors used in a graph,
+you can simply use the functions like so
+
+```{r}
+#| echo: fenced
+#| eval: false
+`r colorize("Gentoo", "orange")` and  `r colorize("Adelie", "purple")` and  
+`r colorize("Chinstrap", "darkgreen")` are Penguins.
+
+This plot has `r colorize("red")` points, `r colorize("blue")` points, 
+`r colorize("green")` points, which are nice!
+Other colors used in the plot are `r colorize("yellow")`, `r colorize("pink")`, 
+`r colorize("gray")` and `r colorize("black")`.
+
+As you can see, `r colorize("yellow")` and `r colorize("pink")` are illegible on a white background,
+but `r colorbox("yellow")` and `r colorbox("pink")` work fine.
+```
+
+This renders as:
+
+`r colorize("Gentoo", "orange")` and  `r colorize("Adelie", "purple")` and  `r colorize("Chinstrap", "darkgreen")` are Penguins.
+
+This plot has `r colorize("red")` points, `r colorize("blue")` points, `r colorize("green")` points, which are nice!
+Other colors used in the plot are `r colorize("yellow")`, `r colorize("pink")`, `r colorize("gray")` and `r colorize("black")`.
+
+As you can see, `r colorize("yellow")` and `r colorize("pink")` are illegible on a white background,
+but in a `colorbox()`  `r colorbox("yellow")` and `r colorbox("pink")` work fine.
+
 ### Named colors
 
-_Idea:_ Named colors can just be included via `colorbox()` with their name, e.g., `colorbox("red")` for `r colorbox("red")`.
+_Idea:_ Named colors can just be included via `colorbox()` with just their name, e.g., `colorbox("red")` for `r colorbox("red")`. 
 
 _Examples:_
 `r colorbox("black")`,
@@ -33,6 +71,25 @@ _Examples:_
 `r colorbox("pink")`,
 `r colorbox("darkgreen")`,
 `r colorbox("purple")`.
+
+`colorize()` simply prints the color name in that color 
+
+_Examples_:
+`r colorize("black")`,
+`r colorize("gray")`,
+`r colorize("red")`,
+`r colorize("orange")`,
+`r colorize("yellow")`,
+`r colorize("green")`,
+`r colorize("blue")`,
+`r colorize("cyan")`,
+`r colorize("magenta")`,
+`r colorize("pink")`,
+`r colorize("darkgreen")`,
+`r colorize("purple")`.
+
+
+_Idea_: You can refer to the color of data elements used in plots
 
 
 ### Hex colors
