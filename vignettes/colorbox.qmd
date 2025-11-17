@@ -52,7 +52,7 @@ This plot has `r colorize("red")` points, `r colorize("blue")` points, `r colori
 Other colors used in the plot are `r colorize("yellow")`, `r colorize("pink")`, `r colorize("gray")` and `r colorize("black")`.
 
 As you can see, `r colorize("yellow")` and `r colorize("pink")` are illegible on a white background,
-but in a `colorbox()`  `r colorbox("yellow")` and `r colorbox("pink")` work fine.
+but in a `colorbox()`,  `r colorbox("yellow")` and `r colorbox("pink")` work fine.
 
 ### Named colors
 
@@ -88,16 +88,32 @@ _Examples_:
 `r colorize("darkgreen")`,
 `r colorize("purple")`.
 
+### LaTeX color names
 
-_Idea_: You can refer to the color of data elements used in plots
+You must be careful with LaTeX output. Quarto and markdown typically use the [`xcolor` package](https://ctan.org/pkg/xcolor). This does not define all the
+color names available in R or HTML and so will trigger LaTeX errors if a color name is undefined. 
+
+For example, `darkgreen` is not defined there, but you can use:
+`\definecolor{darkgreen}{RGB}{1,50,32}` in a document to be rendered to PDF.
+
+<!-- _Idea_: You can refer to the color of data elements used in plots -->
 
 
 ### Hex colors
 
-_Idea:_ Hex colors can be included via `colorbox()` using two arguments, their verbal description and the precise hex color code,
+_Idea:_ Hex colors can be included via `colorbox()` using two arguments, their verbal description (or text to be printed)
+and the precise hex color code,
 e.g., `colorbox("bluishgreen", "#009E73")` for `r colorbox("bluishgreen", "#009E73")`.
 
-_Examples:_ The Okabe-Ito palette as provided by `palette.colors(names = TRUE)` has following elements,
+_Examples:_ The Okabe-Ito palette as provided (by default) by `grDevices::palette.colors(names = TRUE)` has following elements,
+
+```{r}
+oi <- palette.colors(names = TRUE) |>
+  print()
+```
+
+Rendering each of these as `colorbox()`, using their names (`names(oi)[i]`) and values (`oi[i]`) gives: 
+
 `r colorbox(names(oi)[1], oi[1])`,
 `r colorbox(names(oi)[2], oi[2])`,
 `r colorbox(names(oi)[3], oi[3])`,
@@ -107,3 +123,49 @@ _Examples:_ The Okabe-Ito palette as provided by `palette.colors(names = TRUE)` 
 `r colorbox(names(oi)[7], oi[7])`,
 `r colorbox(names(oi)[8], oi[8])`,
 `r colorbox(names(oi)[9], oi[9])`.
+
+### Defining color variables in your document
+
+If you want to more easily use colorized color names in your document, in a chunk somewhere you can simply create them as variables,
+whichever of `colorize()`, `color_bg()` or `colorbox()` suits your needs. 
+For example:
+
+```{r name-colors}
+red <- colorize('red')
+pink <- colorize("pink")
+blue <- colorize('blue')
+green <- colorize("green")
+yellow <- colorize("yellow")
+lightgreen <- colorize("lightgreen")
+darkgreen <- colorize("darkgreen")
+```
+
+Then, you can use them directly in text as [inline code](https://quarto.org/docs/computations/inline-code.html) (r code, enclosed in backticks), 
+giving "this line is `r red`", "that point is `r blue`".
+
+You can also use these with `glue::glue()` more simply as "this line is {red}, this point is {blue}", which interpolates their values into
+a string. 
+
+I use this to create colorized text in figure captions, where, in Quarto, it is necessary to use `!expr` to have the text of the caption
+evaluated:
+
+```{r}
+#| echo: fenced
+#| eval: false
+#| label: fig-Salaries-loess
+#| fig-cap: !expr glue::glue("Scatterplot of Salary vs. years since PhD, adding the loess smooth. 
+#|    The loess smooth curve and confidence band in {green} is nearly indistinguishable 
+#|    from a quadratic fit in {blue}.")
+
+gg1 + 
+  geom_smooth(method = "loess", formula = "y ~ x", 
+              color = "blue", fill = scales::muted("blue"),
+              linewidth = 2) +
+  geom_smooth(method = "lm", formula = "y ~ x", se = FALSE,
+              color = "red",
+              linewidth = 2) +
+  geom_smooth(method = "lm", formula = "y ~ poly(x,2)", 
+              color = "darkgreen", fill = "lightgreen",
+              linewidth = 2) 
+```
+
