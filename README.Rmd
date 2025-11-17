@@ -53,6 +53,9 @@ This is somewhat similar to what RStudio does when you enter color names or hex 
 
 ![](man/figures/test_colors.png)
 
+The uses of color for text in visualization is far more general than represented here.
+Brath (2020) is a wonderful source for inspriation!
+
 ## Installation
 
 
@@ -83,3 +86,14 @@ test_colors <- c("red", "blue", "green",
 sapply(test_colors, colorize)
 ```
 
+## Citation
+
+If you find this package useful in your work, you can cite it as:
+
+  Friendly M, Zeileis A (2025). _colorize: Render Text in Color for Markdown/Quarto Documents_. R package version 0.2.0,
+  <https://github.com/friendly/colorize>.
+
+
+## References
+
+Brath, R. (2020). _Visualizing with Text_. A K Peters/CRC Press. https://doi.org/10.1201/9780429290565

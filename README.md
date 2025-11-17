@@ -52,6 +52,9 @@ or hex values in code, but `colorbox()` uses
 
 ![](man/figures/test_colors.png)
 
+The uses of color for text in visualization is far more general than
+represented here. Brath (2020) is a wonderful source for inspriation!
+
 ## Installation
 
 `colorize` is not yet on CRAN. You can install the development version
@@ -99,3 +102,16 @@ sapply(test_colors, colorize)
 #>                                          darkgreen 
 #> "<span style='color: darkgreen;'>darkgreen</span>"
 ```
+
+## Citation
+
+If you find this package useful in your work, you can cite it as:
+
+Friendly M, Zeileis A (2025). *colorize: Render Text in Color for
+Markdown/Quarto Documents*. R package version 0.2.0,
+<https://github.com/friendly/colorize>.
+
+## References
+
+Brath, R. (2020). *Visualizing with Text*. A K Peters/CRC Press.
+<https://doi.org/10.1201/9780429290565>
