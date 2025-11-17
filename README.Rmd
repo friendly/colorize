@@ -57,18 +57,29 @@ This is somewhat similar to what RStudio does when you enter color names or hex 
 
 
 `colorize` is not yet on CRAN.
-You can install the development version of colorize like so:
+You can install the development version of colorize from either the GitHub repo or r-universe, as follows:
+
 
 ``` r
 remotes::install.github("friendly/colorize")
+# or:
+install.packages('colorize', repos = c('https://friendly.r-universe.dev'))
 ```
+
+The package vignette, `vignette("colorbox", package = "colorize")` describes the use of these functions.
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This example simply shows how a set of color names is rendered in HTML encoding. It doesn't print them in their colors.
 
 ```{r example}
 library(colorize)
-## basic example code
+# define some color names
+
+test_colors <- c("red", "blue", "green",
+                 "white", "black", "gray",
+                 "pink", "yellow", "darkgreen")
+
+sapply(test_colors, colorize)
 ```
 

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Quarto Background Color Boxes • colorize</title>
+<title>Printing Text in Color in Markdown / Quarto • colorize</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="colorbox_files/libs/quarto-html/popper.min.js"></script><script src="colorbox_files/libs/quarto-html/tippy.umd.min.js"></script><link href="colorbox_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="colorbox_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Quarto Background Color Boxes">
+<!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Printing Text in Color in Markdown / Quarto">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -38,7 +38,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/colorbox.html">Quarto Background Color Boxes</a></li>
+<li><a class="dropdown-item" href="../articles/colorbox.html">Printing Text in Color in Markdown / Quarto</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -57,7 +57,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Quarto Background Color Boxes</h1>
+      <h1>Printing Text in Color in Markdown / Quarto</h1>
 
 
 
@@ -71,14 +71,105 @@
 
 
 
-    <section class="level3"><h3 id="named-colors">Named colors<a class="anchor" aria-label="anchor" href="#named-colors"></a>
+    <p>The colorize package provides some simple functions for printing text in color in markdown or Quarto documents, to be rendered as HTML or LaTeX. This is useful when writing about the use of colors in graphs or tables, where you want to print their names in their actual color to give a direct impression of the color, like “red” shown in <span style="color: red;">red</span>, or “blue” shown in <span style="color: blue;">blue</span>.</p>
+<p>The following functions are provided:</p>
+<ul>
+<li>
+<code>colorize(text, color)</code>: Print the <code>text</code> in a given <code>color</code>, as in <span style="color: red;">this text in red</span>
+</li>
+<li>
+<code>colorize_bg(text, color)</code>: Print the <code>text</code> with a background in <code>color</code>, as in <span style="background-color: red;">this text in red</span>
+</li>
+<li>
+<code>colorbox(text, color, ...)</code>: Print <code>text</code> with background in color, but where the text is given a contrasting color designed to be most legible, as in <span style="background-color: #FF0000; color: #FFFFFF; padding: 2px">this text in red</span>
+</li>
+</ul>
+<section class="level3"><h3 id="normal-usage">Normal usage<a class="anchor" aria-label="anchor" href="#normal-usage"></a>
 </h3>
-<p><em>Idea:</em> Named colors can just be included via <code><a href="../reference/colorbox.html">colorbox()</a></code> with their name, e.g., <code>colorbox("red")</code> for <span style="background-color: #FF0000; color: #FFFFFF; padding: 2px">red</span>.</p>
+<p>In text describing analysis of the <code>penguins</code> data, to match the colors used in a graph, you can simply use the functions like so</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">r colorize("Gentoo", "orange")</span><span class="st">`</span> and  <span class="st">`</span><span class="at">r colorize("Adelie", "purple")</span><span class="st">`</span> and  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">r colorize("Chinstrap", "darkgreen")</span><span class="st">`</span> are Penguins.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>This plot has <span class="st">`</span><span class="at">r colorize("red")</span><span class="st">`</span> points, <span class="st">`</span><span class="at">r colorize("blue")</span><span class="st">`</span> points, </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">r colorize("green")</span><span class="st">`</span> points, which are nice<span class="sc">!</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Other colors used <span class="cf">in</span> the plot are <span class="st">`</span><span class="at">r colorize("yellow")</span><span class="st">`</span>, <span class="st">`</span><span class="at">r colorize("pink")</span><span class="st">`</span>, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">r colorize("gray")</span><span class="st">`</span> and <span class="st">`</span><span class="at">r colorize("black")</span><span class="st">`</span>.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>As you can see, <span class="st">`</span><span class="at">r colorize("yellow")</span><span class="st">`</span> and <span class="st">`</span><span class="at">r colorize("pink")</span><span class="st">`</span> are illegible on a white background,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>but <span class="st">`</span><span class="at">r colorbox("yellow")</span><span class="st">`</span> and <span class="st">`</span><span class="at">r colorbox("pink")</span><span class="st">`</span> work fine.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+</div>
+<p>This renders as:</p>
+<p><span style="color: orange;">Gentoo</span> and <span style="color: purple;">Adelie</span> and <span style="color: darkgreen;">Chinstrap</span> are Penguins.</p>
+<p>This plot has <span style="color: red;">red</span> points, <span style="color: blue;">blue</span> points, <span style="color: green;">green</span> points, which are nice! Other colors used in the plot are <span style="color: yellow;">yellow</span>, <span style="color: pink;">pink</span>, <span style="color: gray;">gray</span> and <span style="color: black;">black</span>.</p>
+<p>As you can see, <span style="color: yellow;">yellow</span> and <span style="color: pink;">pink</span> are illegible on a white background, but in a <code><a href="../reference/colorbox.html">colorbox()</a></code>, <span style="background-color: #FFFF00; color: #000000; padding: 2px">yellow</span> and <span style="background-color: #FFC0CB; color: #000000; padding: 2px">pink</span> work fine.</p>
+</section><section class="level3"><h3 id="named-colors">Named colors<a class="anchor" aria-label="anchor" href="#named-colors"></a>
+</h3>
+<p><em>Idea:</em> Named colors can just be included via <code><a href="../reference/colorbox.html">colorbox()</a></code> with just their name, e.g., <code>colorbox("red")</code> for <span style="background-color: #FF0000; color: #FFFFFF; padding: 2px">red</span>.</p>
 <p><em>Examples:</em> <span style="background-color: #000000; color: #FFFFFF; padding: 2px">black</span>, <span style="background-color: #BEBEBE; color: #000000; padding: 2px">gray</span>, <span style="background-color: #FF0000; color: #FFFFFF; padding: 2px">red</span>, <span style="background-color: #FFA500; color: #000000; padding: 2px">orange</span>, <span style="background-color: #FFFF00; color: #000000; padding: 2px">yellow</span>, <span style="background-color: #00FF00; color: #000000; padding: 2px">green</span>, <span style="background-color: #0000FF; color: #FFFFFF; padding: 2px">blue</span>, <span style="background-color: #00FFFF; color: #000000; padding: 2px">cyan</span>, <span style="background-color: #FF00FF; color: #FFFFFF; padding: 2px">magenta</span>, <span style="background-color: #FFC0CB; color: #000000; padding: 2px">pink</span>, <span style="background-color: #006400; color: #FFFFFF; padding: 2px">darkgreen</span>, <span style="background-color: #A020F0; color: #FFFFFF; padding: 2px">purple</span>.</p>
+<p><code><a href="../reference/colorize.html">colorize()</a></code> simply prints the color name in that color</p>
+<p><em>Examples</em>: <span style="color: black;">black</span>, <span style="color: gray;">gray</span>, <span style="color: red;">red</span>, <span style="color: orange;">orange</span>, <span style="color: yellow;">yellow</span>, <span style="color: green;">green</span>, <span style="color: blue;">blue</span>, <span style="color: cyan;">cyan</span>, <span style="color: magenta;">magenta</span>, <span style="color: pink;">pink</span>, <span style="color: darkgreen;">darkgreen</span>, <span style="color: purple;">purple</span>.</p>
+</section><section class="level3"><h3 id="latex-color-names">LaTeX color names<a class="anchor" aria-label="anchor" href="#latex-color-names"></a>
+</h3>
+<p>You must be careful with LaTeX output. Quarto and markdown typically use the <a href="https://ctan.org/pkg/xcolor" class="external-link"><code>xcolor</code> package</a>. This does not define all the color names available in R or HTML and so will trigger LaTeX errors if a color name is undefined.</p>
+<p>For example, <code>darkgreen</code> is not defined there, but you can use: <code>\definecolor{darkgreen}{RGB}{1,50,32}</code> in a document to be rendered to PDF.</p>
+<!-- _Idea_: You can refer to the color of data elements used in plots -->
 </section><section class="level3"><h3 id="hex-colors">Hex colors<a class="anchor" aria-label="anchor" href="#hex-colors"></a>
 </h3>
-<p><em>Idea:</em> Hex colors can be included via <code><a href="../reference/colorbox.html">colorbox()</a></code> using two arguments, their verbal description and the precise hex color code, e.g., <code>colorbox("bluishgreen", "#009E73")</code> for <span style="background-color: #009E73; color: #FFFFFF; padding: 2px">bluishgreen</span>.</p>
-<p><em>Examples:</em> The Okabe-Ito palette as provided by <code>palette.colors(names = TRUE)</code> has following elements, <span style="background-color: #000000; color: #FFFFFF; padding: 2px">black</span>, <span style="background-color: #E69F00; color: #000000; padding: 2px">orange</span>, <span style="background-color: #56B4E9; color: #000000; padding: 2px">skyblue</span>, <span style="background-color: #009E73; color: #FFFFFF; padding: 2px">bluishgreen</span>, <span style="background-color: #F0E442; color: #000000; padding: 2px">yellow</span>, <span style="background-color: #0072B2; color: #FFFFFF; padding: 2px">blue</span>, <span style="background-color: #D55E00; color: #FFFFFF; padding: 2px">vermillion</span>, <span style="background-color: #CC79A7; color: #FFFFFF; padding: 2px">reddishpurple</span>, <span style="background-color: #999999; color: #FFFFFF; padding: 2px">gray</span>.</p>
+<p><em>Idea:</em> Hex colors can be included via <code><a href="../reference/colorbox.html">colorbox()</a></code> using two arguments, their verbal description (or text to be printed) and the precise hex color code, e.g., <code>colorbox("bluishgreen", "#009E73")</code> for <span style="background-color: #009E73; color: #FFFFFF; padding: 2px">bluishgreen</span>.</p>
+<p><em>Examples:</em> The Okabe-Ito palette as provided (by default) by <code>grDevices::palette.colors(names = TRUE)</code> has following elements,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">oi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palette.html" class="external-link">palette.colors</a></span><span class="op">(</span>names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        black        orange       skyblue   bluishgreen        yellow
+    "#000000"     "#E69F00"     "#56B4E9"     "#009E73"     "#F0E442"
+         blue    vermillion reddishpurple          gray
+    "#0072B2"     "#D55E00"     "#CC79A7"     "#999999" </code></pre>
+</div>
+</div>
+<p>Rendering each of these as <code><a href="../reference/colorbox.html">colorbox()</a></code>, using their names (<code>names(oi)[i]</code>) and values (<code>oi[i]</code>) gives:</p>
+<p><span style="background-color: #000000; color: #FFFFFF; padding: 2px">black</span>, <span style="background-color: #E69F00; color: #000000; padding: 2px">orange</span>, <span style="background-color: #56B4E9; color: #000000; padding: 2px">skyblue</span>, <span style="background-color: #009E73; color: #FFFFFF; padding: 2px">bluishgreen</span>, <span style="background-color: #F0E442; color: #000000; padding: 2px">yellow</span>, <span style="background-color: #0072B2; color: #FFFFFF; padding: 2px">blue</span>, <span style="background-color: #D55E00; color: #FFFFFF; padding: 2px">vermillion</span>, <span style="background-color: #CC79A7; color: #FFFFFF; padding: 2px">reddishpurple</span>, <span style="background-color: #999999; color: #FFFFFF; padding: 2px">gray</span>.</p>
+</section><section class="level3"><h3 id="defining-color-variables-in-your-document">Defining color variables in your document<a class="anchor" aria-label="anchor" href="#defining-color-variables-in-your-document"></a>
+</h3>
+<p>If you want to more easily use colorized color names in your document, in a chunk somewhere you can simply create them as variables, whichever of <code><a href="../reference/colorize.html">colorize()</a></code>, <code>color_bg()</code> or <code><a href="../reference/colorbox.html">colorbox()</a></code> suits your needs. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">red</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/colorize.html">colorize</a></span><span class="op">(</span><span class="st">'red'</span><span class="op">)</span></span>
+<span><span class="va">pink</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/colorize.html">colorize</a></span><span class="op">(</span><span class="st">"pink"</span><span class="op">)</span></span>
+<span><span class="va">blue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/colorize.html">colorize</a></span><span class="op">(</span><span class="st">'blue'</span><span class="op">)</span></span>
+<span><span class="va">green</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/colorize.html">colorize</a></span><span class="op">(</span><span class="st">"green"</span><span class="op">)</span></span>
+<span><span class="va">yellow</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/colorize.html">colorize</a></span><span class="op">(</span><span class="st">"yellow"</span><span class="op">)</span></span>
+<span><span class="va">lightgreen</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/colorize.html">colorize</a></span><span class="op">(</span><span class="st">"lightgreen"</span><span class="op">)</span></span>
+<span><span class="va">darkgreen</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/colorize.html">colorize</a></span><span class="op">(</span><span class="st">"darkgreen"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Then, you can use them directly in text as <a href="https://quarto.org/docs/computations/inline-code.html" class="external-link">inline code</a> (r code, enclosed in backticks), giving “this line is <span style="color: red;">red</span>”, “that point is <span style="color: blue;">blue</span>”.</p>
+<p>You can also use these with <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code> more simply as “this line is {red}, this point is {blue}”, which interpolates their values into a string.</p>
+<p>I use this to create colorized text in figure captions, where, in Quarto, it is necessary to use <code>!expr</code> to have the text of the caption evaluated:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-Salaries-loess</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: !expr glue::glue("Scatterplot of Salary vs. years since PhD, adding the loess smooth. </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#|    The loess smooth curve and confidence band in {green} is nearly indistinguishable </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#|    from a quadratic fit in {blue}.")</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>gg1 <span class="sc">+</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">fill =</span> scales<span class="sc">::</span><span class="fu">muted</span>(<span class="st">"blue"</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ poly(x,2)"</span>, </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">fill =</span> <span class="st">"lightgreen"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="dv">2</span>) </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+</div>
 </section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);

@@ -38,7 +38,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/colorbox.html">Quarto Background Color Boxes</a></li>
+<li><a class="dropdown-item" href="articles/colorbox.html">Printing Text in Color in Markdown / Quarto</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -80,17 +80,44 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of colorize like so:</p>
+<p><code>colorize</code> is not yet on CRAN. You can install the development version of colorize from either the GitHub repo or r-universe, as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install.github</span><span class="op">(</span><span class="st">"friendly/colorize"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install.github</span><span class="op">(</span><span class="st">"friendly/colorize"</span><span class="op">)</span></span>
+<span><span class="co"># or:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'colorize'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://friendly.r-universe.dev'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The package vignette, <code><a href="articles/colorbox.html">vignette("colorbox", package = "colorize")</a></code> describes the use of these functions.</p>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>This example simply shows how a set of color names is rendered in HTML encoding. It doesn’t print them in their colors.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/friendly/colorize" class="external-link">colorize</a></span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
+<span><span class="co"># define some color names</span></span>
+<span></span>
+<span><span class="va">test_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>,</span>
+<span>                 <span class="st">"white"</span>, <span class="st">"black"</span>, <span class="st">"gray"</span>,</span>
+<span>                 <span class="st">"pink"</span>, <span class="st">"yellow"</span>, <span class="st">"darkgreen"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">test_colors</span>, <span class="va">colorize</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                                red </span></span>
+<span><span class="co">#&gt;             "&lt;span style='color: red;'&gt;red&lt;/span&gt;" </span></span>
+<span><span class="co">#&gt;                                               blue </span></span>
+<span><span class="co">#&gt;           "&lt;span style='color: blue;'&gt;blue&lt;/span&gt;" </span></span>
+<span><span class="co">#&gt;                                              green </span></span>
+<span><span class="co">#&gt;         "&lt;span style='color: green;'&gt;green&lt;/span&gt;" </span></span>
+<span><span class="co">#&gt;                                              white </span></span>
+<span><span class="co">#&gt;         "&lt;span style='color: white;'&gt;white&lt;/span&gt;" </span></span>
+<span><span class="co">#&gt;                                              black </span></span>
+<span><span class="co">#&gt;         "&lt;span style='color: black;'&gt;black&lt;/span&gt;" </span></span>
+<span><span class="co">#&gt;                                               gray </span></span>
+<span><span class="co">#&gt;           "&lt;span style='color: gray;'&gt;gray&lt;/span&gt;" </span></span>
+<span><span class="co">#&gt;                                               pink </span></span>
+<span><span class="co">#&gt;           "&lt;span style='color: pink;'&gt;pink&lt;/span&gt;" </span></span>
+<span><span class="co">#&gt;                                             yellow </span></span>
+<span><span class="co">#&gt;       "&lt;span style='color: yellow;'&gt;yellow&lt;/span&gt;" </span></span>
+<span><span class="co">#&gt;                                          darkgreen </span></span>
+<span><span class="co">#&gt; "&lt;span style='color: darkgreen;'&gt;darkgreen&lt;/span&gt;"</span></span></code></pre></div>
 </div>
 </div>
 

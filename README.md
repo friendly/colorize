@@ -54,17 +54,48 @@ or hex values in code, but `colorbox()` uses
 
 ## Installation
 
-You can install the development version of colorize like so:
+`colorize` is not yet on CRAN. You can install the development version
+of colorize from either the GitHub repo or r-universe, as follows:
 
 ``` r
 remotes::install.github("friendly/colorize")
+# or:
+install.packages('colorize', repos = c('https://friendly.r-universe.dev'))
 ```
+
+The package vignette, `vignette("colorbox", package = "colorize")`
+describes the use of these functions.
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This example simply shows how a set of color names is rendered in HTML
+encoding. It doesn’t print them in their colors.
 
 ``` r
 library(colorize)
-## basic example code
+# define some color names
+
+test_colors <- c("red", "blue", "green",
+                 "white", "black", "gray",
+                 "pink", "yellow", "darkgreen")
+
+sapply(test_colors, colorize)
+#>                                                red 
+#>             "<span style='color: red;'>red</span>" 
+#>                                               blue 
+#>           "<span style='color: blue;'>blue</span>" 
+#>                                              green 
+#>         "<span style='color: green;'>green</span>" 
+#>                                              white 
+#>         "<span style='color: white;'>white</span>" 
+#>                                              black 
+#>         "<span style='color: black;'>black</span>" 
+#>                                               gray 
+#>           "<span style='color: gray;'>gray</span>" 
+#>                                               pink 
+#>           "<span style='color: pink;'>pink</span>" 
+#>                                             yellow 
+#>       "<span style='color: yellow;'>yellow</span>" 
+#>                                          darkgreen 
+#> "<span style='color: darkgreen;'>darkgreen</span>"
 ```
