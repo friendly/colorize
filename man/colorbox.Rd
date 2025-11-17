@@ -71,10 +71,6 @@ color codes. These are shades of:
 * `r colorbox("Chinstrap", "purple")`: `r colorbox("purple", "purple")`, and
 * `r colorbox("Gentoo", "green")`: `r colorbox("green", "green")`.
 }\if{html}{\out{</div>}}
-
-This is the result, rendered to HTML:
-
-\figure{man/figures/colorbox-penguins.jpg}
 }
 \examples{
 ## basic usage: just supply a color name and let both the background color

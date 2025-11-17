@@ -28,10 +28,6 @@
 #' * `r colorbox("Gentoo", "green")`: `r colorbox("green", "green")`.
 #' ````
 #'
-#' This is the result, rendered to HTML:
-#'
-#' ![Penguin colors](man/figures/colorbox-penguins.jpg)
-#'
 #'
 #' @param text character string with the text to display.
 #' @param color R color specification. The default is to use \code{text},

@@ -55,6 +55,13 @@ In a chunk, you can also define variables with the names of colors, for ease of 
 Then, these can be used directly in strings, interpolated by \code{glue::glue()}. This is particularly useful in figure captions.
 }
 \examples{
+# show what the generated text looks like when encoded for either HTML or LaTeX
+colorize("red", format = "html") |> cat()
+colorize("red", format = "latex") |> cat()
+
+colorize_bg("blue", format = "html") |> cat()
+colorize_bg("blue", format = "latex") |> cat()
+
 \donttest{
  red <- colorize('red')
  blue <- colorize('blue')
