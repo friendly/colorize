@@ -53,7 +53,7 @@ or hex values in code, but `colorbox()` uses
 ![](man/figures/test_colors.png)
 
 The uses of color for text in visualization is far more general than
-represented here. Brath (2020) is a wonderful source for inspriation!
+represented here. Brath (2020) is a wonderful source for inspiration!
 
 ## Installation
 
