@@ -77,6 +77,7 @@
 <p>In the examples above, note the difference between <code><a href="reference/colorize.html">colorize_bg()</a></code> and <code><a href="reference/colorbox.html">colorbox()</a></code>: when the desired color is <span style="color: red;">red</span>, <code><a href="reference/colorbox.html">colorbox()</a></code> uses a lighter color (white) so the text contrasts more with the darker background.</p>
 <p>This is somewhat similar to what RStudio does when you enter color names or hex values in code, but <code><a href="reference/colorbox.html">colorbox()</a></code> uses <code>colorspace::contrast_ratio(textcolor, color, ...)</code> to find the <code>textcolor</code> that <strong>contrasts best</strong> against the background <code>color</code>.</p>
 <p><img src="reference/figures/test_colors.png"></p>
+<p>The uses of color for text in visualization is far more general than represented here. Brath (2020) is a wonderful source for inspiration!</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -118,6 +119,17 @@
 <span><span class="co">#&gt;       "&lt;span style='color: yellow;'&gt;yellow&lt;/span&gt;" </span></span>
 <span><span class="co">#&gt;                                          darkgreen </span></span>
 <span><span class="co">#&gt; "&lt;span style='color: darkgreen;'&gt;darkgreen&lt;/span&gt;"</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you find this package useful in your work, you can cite it as:</p>
+<p>Friendly M, Zeileis A (2025). <em>colorize: Render Text in Color for Markdown/Quarto Documents</em>. R package version 0.2.0, <a href="https://github.com/friendly/colorize" class="external-link uri">https://github.com/friendly/colorize</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<p>Brath, R. (2020). <em>Visualizing with Text</em>. A K Peters/CRC Press. <a href="https://doi.org/10.1201/9780429290565" class="external-link uri">https://doi.org/10.1201/9780429290565</a></p>
 </div>
 </div>
 
