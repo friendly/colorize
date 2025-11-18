@@ -103,6 +103,14 @@ sapply(test_colors, colorize)
 #> "<span style='color: darkgreen;'>darkgreen</span>"
 ```
 
+## Related
+
+For a purely Quarto approach,
+[quarto-highlight-text](m.canouil.dev/quarto-highlight-text/) is a
+Quarto extension that allows you to highlight text in a document for
+various formats: HTML, LaTeX, Typst, Docx, PowerPoint, Reveal.js, and
+Beamer.
+
 ## Citation
 
 If you find this package useful in your work, you can cite it as:
