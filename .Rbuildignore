@@ -8,3 +8,4 @@
 ^docs/
 .nojekyll
 vignettes/.quarto
+^cran-comments\.md$
