@@ -106,8 +106,8 @@ sapply(test_colors, colorize)
 ## Related
 
 For a purely Quarto approach,
-[quarto-highlight-text](m.canouil.dev/quarto-highlight-text/) is a
-Quarto extension that allows you to highlight text in a document for
+[quarto-highlight-text](https://m.canouil.dev/quarto-highlight-text/) is
+a Quarto extension that allows you to highlight text in a document for
 various formats: HTML, LaTeX, Typst, Docx, PowerPoint, Reveal.js, and
 Beamer.
 
