@@ -13,6 +13,7 @@ Authors@R:
       person("Richard", "Brath", role = "ctb",
              email = "rbrath@uncharted.software")
     )
+Depends: R (>= 4.1.0)
 Imports: colorspace, knitr
 Suggests: 
   quarto, 
