@@ -9,3 +9,4 @@
 .nojekyll
 vignettes/.quarto
 ^cran-comments\.md$
+^CRAN-SUBMISSION$

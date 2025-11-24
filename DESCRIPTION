@@ -1,8 +1,8 @@
 Package: colorize
 Title: Render Text in Color for Markdown/Quarto Documents
-Description: The colorize package provides some simple functions for printing text in color in markdown or Quarto documents, to be rendered as HTML or LaTeX. This is useful when writing about the use of colors in graphs or tables, where you want to print their names in their actual color to give a direct impression of the color, like “red” shown in red, or “blue” shown in blue. 
-Version: 0.2.0
-Date: 2025-11-15
+Description: Provides some simple functions for printing text in color in 'markdown' or 'Quarto' documents, to be rendered as HTML or LaTeX. This is useful when writing about the use of colors in graphs or tables, where you want to print their names in their actual color to give a direct impression of the color, like “red” shown in red, or “blue” shown in blue. 
+Version: 0.2.1
+Date: 2025-11-24
 Authors@R: 
     c(person("Michael", "Friendly",  
              email = "friendly@yorku.ca", role = c("aut", "cre"),

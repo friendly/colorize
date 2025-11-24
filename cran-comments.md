@@ -9,7 +9,16 @@
 
 * This is a new submission.
 
-## colorize 0.2.0
+## Comments
+
+This is a small package, with only a few functions, but it serves a need not otherwise met in available R packages.
+It is therefore useful to have this on CRAN.
+
+### colorize 0.2.1
+
+* Fix Description: as per CRAN request
+
+### colorize 0.2.0
 
 * Add `format` argument to `colorize()` and `colorize_bg()`
 * Extend vignette, making it more general
