@@ -81,7 +81,6 @@ colorize <- function(text,
   # } else text      # Fallback for other formats
 }
 
-
 #' @rdname colorize
 #' @export
 colorize_bg <- function(text,
@@ -98,12 +97,5 @@ colorize_bg <- function(text,
     "html" =  sprintf("<span style='background-color: %s;'>%s</span>", color, text),
     "text" = text)
 
-  #  if (knitr::is_latex_output()) {
-  #   sprintf("\\colorbox{%s}{%s}", color, text)
-  # } else if (knitr::is_html_output()) {
-  #   sprintf("<span style='background-color: %s;'>%s</span>", color, text)
-  # } else {
-  #   text # Fallback for other formats
-  # }
 }
 
