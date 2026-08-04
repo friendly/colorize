@@ -13,7 +13,7 @@ Commit](https://img.shields.io/github/last-commit/friendly/colorize)](https://gi
 
 **Version 0.2.0**
 
-<img src="man/figures/logo.jpg" height="120" style="float:right; height:120px;"/>
+<img src="man/figures/logo.png" height="120" style="float:right; height:120px;"/>
 The `colorize` package provides some simple functions for printing text
 in color in markdown or Quarto documents, to be rendered as HTML or
 LaTeX.
